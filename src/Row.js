@@ -3,16 +3,17 @@ import axios from "./axios";
 
 function Row ({ title, fetchUrl }){
 
-	const [movies, setMovie] = useState([]);
+	const [movies, setMovies] = useState([]);
 
 	useEffect(()=>{
 		async function fetchData(){
 			const request = await axios.get(fetchUrl);
-			console.log(request);
+			console.log(request.data.results);
+			setMovies(request.data.results);
 			return request;
 		}
 		fetchData();
-	}, []);
+	}, [fetchUrl]);
 
 
 	return (
